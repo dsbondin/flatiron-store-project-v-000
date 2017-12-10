@@ -1,8 +1,11 @@
 <nav class="">
     <ul>
-        <li> <%= link_to "Store Home", store_path %> </li>
-        <% if !!@cart %>
-          <li> <%= link_to "Cart", cart_path(current_cart) %></li>
+        <%= link_to "Store Home", store_path %> |
+        <%= link_to("Cart", cart_path(current_cart)) if !!@cart %>
+        <%= link_to("Sign out", destroy_user_session_path, :method => 'delete') if user_signed_in? %>
+        <% if !user_signed_in? %>
+          <%= link_to("Sign Up", new_user_registration_path) %> |
+          <%= link_to("Log In", new_user_session_path) %>
         <% end %>
     </ul>
 </nav>
