@@ -11,11 +11,10 @@ class Cart < ActiveRecord::Base
     sum
   end
 
+#not sure about this one, might need tweaking
   def add_item(item_id)
-    if line = line_items.find_by(item_id: item_id)
-      line.tap{|line| line.quantity += 1}
-    else
-      line_items.build(item_id: item_id, quantity: 1)
-    end
+    line = line_items.find_or_initialize_by(item_id: item_id)
+    line.tap{|line| line.quantity += 1}
   end
+
 end

@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171210145000) do
+ActiveRecord::Schema.define(version: 20171211023340) do
 
   create_table "carts", force: :cascade do |t|
     t.integer "user_id"
+    t.string  "status"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -33,7 +34,7 @@ ActiveRecord::Schema.define(version: 20171210145000) do
   create_table "line_items", force: :cascade do |t|
     t.integer "cart_id"
     t.integer "item_id"
-    t.integer "quantity"
+    t.integer "quantity", default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 20171210145000) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "current_cart_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
