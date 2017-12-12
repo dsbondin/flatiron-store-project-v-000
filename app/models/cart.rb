@@ -11,7 +11,6 @@ class Cart < ActiveRecord::Base
     sum
   end
 
-#not sure about this one, might need tweaking
   def add_item(item_id)
     line = line_items.find_or_initialize_by(item_id: item_id)
     line.tap{|line| line.quantity += 1}
