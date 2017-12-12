@@ -1,2 +1,3 @@
 <h1><%= @item.title %></h1>
-<h2>$ <%= @item.price %></h2>
+<h2>$<%= @item.price/100 %></h2>
+<h2>Available in stock: <%= @item.inventory %></h2>
