@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   has_many :carts
   belongs_to :current_cart, class_name: "Cart", foreign_key: "current_cart_id"
 
+  def remove_current_cart
+    update(current_cart_id: nil)
+  end
+
 end

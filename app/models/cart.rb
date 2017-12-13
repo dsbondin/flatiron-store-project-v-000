@@ -16,4 +16,13 @@ class Cart < ActiveRecord::Base
     line.tap{|line| line.quantity += 1}
   end
 
+  def checkout
+    line_items.each do |line|
+      item = Item.find_by(id: line.item_id)
+      item.inventory -= line.quantity
+      item.save
+    end
+    update(status: "submitted")
+  end
+
 end
