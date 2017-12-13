@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :authenticate_user!
 
   def show
     @cart = Cart.find_by(id: params[:id])
@@ -7,8 +8,6 @@ class CartsController < ApplicationController
   def checkout
     @cart = Cart.find_by(id: params[:id])
     @cart.checkout
-    # raise params.inspect
-
     current_user.remove_current_cart
 
     redirect_to cart_path(@cart)
